@@ -16,10 +16,13 @@ const App = () => {
   };
 
   const searchDrinks = async (title) => {
-    const response = await fetch(`${API_URL}${title}`);
-    const data = await response.json();
-
-    setDrinks(data.drinks);
+    try {
+      const response = await fetch(`${API_URL}${title}`);
+      const data = await response.json();
+      setDrinks(data.drinks);
+    } catch (e) {
+      console.log(`Error: ${e}`);
+    }
   };
 
   useEffect(() => {
